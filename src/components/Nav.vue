@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <h1>BuzzNotify</h1>
+    <h1><span style="color: var(--primary-color)">Buzz</span>Notify</h1>
     <ul>
       <li>
         <a href="https://github.com/eliutgon/buzz-notify" target="_blank">
@@ -41,22 +41,21 @@
         </a>
       </li>
       <li>
-        <ThemeToggle/>
+        <ThemeToggle />
       </li>
     </ul>
   </nav>
 </template>
 
 <script>
-import ThemeToggle from '../components/ThemeToggle.vue'
+import ThemeToggle from "../components/ThemeToggle.vue";
 
 export default {
   components: {
-    ThemeToggle
-  }
+    ThemeToggle,
+  },
 };
 </script>
-
 
 <style scoped>
 nav {

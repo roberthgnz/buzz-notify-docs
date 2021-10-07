@@ -29,7 +29,7 @@ export default {
 .code-preview {
   padding: 1rem;
   border-radius: 4px;
-  border: 1px solid #eee;
+  border: 1px solid #eaeaea;
 }
 .dark .code-preview {
   border-color: #222;
