@@ -1,7 +1,6 @@
 <template>
   <form>
-    <div class="form-group">
-      <label for="title" class="label">Title</label>
+    <FormGroup label="Title">
       <input
         id="title"
         v-model="generatedCode.title"
@@ -10,62 +9,60 @@
         placeholder="Toast notification title"
         required
       />
-    </div>
-    <div class="form-group">
-      <label for="html" class="label">HTML</label>
+    </FormGroup>
+    <FormGroup label="HTML">
       <textarea
         id="html"
         v-model="generatedCode.html"
+        placeholder="<span>Hello!!</span>"
         name="html"
         cols="30"
         rows="10"
       ></textarea>
-    </div>
-    <div class="form-group">
-      <label class="label">Type</label>
-      <div v-for="type in types" :key="type" class="input-group">
-        <label :for="type">{{ type }}</label>
-        <input
-          :id="type"
-          v-model="generatedCode.type"
-          :value="type"
-          type="radio"
-          name="type"
-        />
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="label">Position</label>
-      <div v-for="position in positions" :key="position" class="input-group">
-        <label :for="position">{{ position }}</label>
-        <input
-          :id="position"
-          v-model="generatedCode.position"
-          :value="position"
-          type="radio"
-          name="position"
-        />
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="label">Transition</label>
-      <div
-        v-for="transition in transitions"
-        :key="transition"
-        class="input-group"
-      >
-        <label :for="transition">{{ transition }}</label>
-        <input
-          :id="transition"
-          v-model="generatedCode.transition"
-          :value="transition"
-          type="radio"
-          name="transition"
-        />
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="duration">Duration (sec)</label>
+    </FormGroup>
+    <FormGroup label="Type">
+      <InputGroup :inline="true">
+        <div v-for="type in types" :key="type" class="field">
+          <input
+            :id="type"
+            v-model="generatedCode.type"
+            :value="type"
+            type="radio"
+            name="type"
+          />
+          <label :for="type">{{ type }}</label>
+        </div>
+      </InputGroup>
+    </FormGroup>
+    <FormGroup label="Position">
+      <InputGroup :inline="true">
+        <div v-for="position in positions" :key="position" class="field">
+          <input
+            :id="position"
+            v-model="generatedCode.position"
+            :value="position"
+            type="radio"
+            name="position"
+          />
+          <label :for="position">{{ position }}</label>
+        </div>
+      </InputGroup>
+    </FormGroup>
+    <FormGroup label="Transition">
+      <InputGroup :inline="true">
+        <div v-for="transition in transitions" :key="transition" class="field">
+          <input
+            :id="transition"
+            v-model="generatedCode.transition"
+            :value="transition"
+            type="radio"
+            name="transition"
+          />
+          <label :for="transition">{{ transition }}</label>
+        </div>
+      </InputGroup>
+    </FormGroup>
+    <FormGroup label="Duration">
       <input
         id="duration"
         v-model="generatedCode.duration"
@@ -75,12 +72,19 @@
         max="60000"
         step="1000"
       />
-    </div>
+    </FormGroup>
   </form>
 </template>
 
 <script>
+import FormGroup from "./ui/FormGroup.vue";
+import InputGroup from "./ui/InputGroup.vue";
+
 export default {
+  components: {
+    FormGroup,
+    InputGroup,
+  },
   model: {
     prop: "code",
     event: "change",
@@ -114,26 +118,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.form-group {
-  display: flex;
-  margin-bottom: 1rem;
-}
-.form-group .label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.5rem;
-  margin-right: 1rem;
-}
-.form-group input {
-  flex: 1;
-  margin-left: 1rem;
-}
-.input-group {
-  display: flex;
-  flex-direction: column;
-  margin-right: 1rem;
-  text-align: center;
-}
-</style>

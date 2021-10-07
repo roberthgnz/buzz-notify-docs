@@ -1,5 +1,7 @@
 <template>
-  <code v-html="preview"></code>
+  <div class="code-preview">
+    <code v-html="preview"></code>
+  </div>
 </template>
 
 <script>
@@ -22,3 +24,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.code-preview {
+  padding: 1rem;
+  border-radius: 4px;
+  border: 1px solid #eee;
+}
+.dark .code-preview {
+  border-color: #222;
+}
+</style>

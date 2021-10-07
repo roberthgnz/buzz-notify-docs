@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col">
       <CodeGenerator :code="generatedCode" />
-      <button @click="createNotification">Create Notification</button>
+      <BButton @click="createNotification">Create Notification</BButton>
     </div>
     <div class="col">
       <CodePreview :code="generatedCode" />
@@ -22,11 +22,14 @@ import Nav from "./components/Nav.vue";
 import CodeGenerator from "./components/CodeGenerator.vue";
 import CodePreview from "./components/CodePreview.vue";
 
+import BButton from "./components/ui/BButton.vue";
+
 export default {
   components: {
     Nav,
     CodeGenerator,
     CodePreview,
+    BButton,
   },
   data() {
     return {
@@ -46,14 +49,6 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 .row {
   width: 80%;
   margin: auto;
@@ -69,15 +64,5 @@ export default {
   width: 100%;
   min-height: 1px;
   padding: 1rem;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, sans-serif;
-}
-
-.dark body {
-  background-color: #333;
-  color: #fff;
 }
 </style>
