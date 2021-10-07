@@ -1,87 +1,77 @@
 <template>
   <form>
-    <div class="form-group">
-      <label for="title" class="label">Title</label>
-      <input
+    <o-field label="Title">
+      <o-input
         id="title"
-        type="text"
-        name="title"
+        v-model="generatedCode.title"
         placeholder="Toast notification title"
         required
-        @change="handleChange"
       />
-    </div>
-    <div class="form-group">
-      <label for="html" class="label">HTML</label>
-      <textarea
-        id="html"
-        name="html"
-        cols="30"
-        rows="10"
-        @change="handleChange"
-      ></textarea>
-    </div>
-    <div class="form-group">
-      <label class="label">Type</label>
+    </o-field>
+
+    <o-field label="HTML">
+      <textarea id="html" v-model="generatedCode.html" rows="10"></textarea>
+    </o-field>
+
+    <!-- <o-field label="Type">
       <div v-for="type in types" :key="type" class="input-group">
         <label :for="type">{{ type }}</label>
-        <input :id="type" type="radio" name="type" @change="handleChange" />
+        <o-radio :id="type" type="radio" name="type" @change="handleChange" />
       </div>
-    </div>
-    <div class="form-group">
-      <label class="label">Position</label>
-      <div v-for="position in positions" :key="position" class="input-group">
-        <label :for="position">{{ position }}</label>
-        <input
+    </o-field> -->
+
+    <o-field label="Position">
+      <template v-for="position in positions" :key="position">
+        <label :for="position"></label>
+        <o-radio
           :id="position"
-          type="radio"
+          v-model="generatedCode.position"
+          :native-value="position"
           name="position"
-          @change="handleChange"
-        />
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="label">Transition</label>
+          >{{ position }}</o-radio
+        >
+      </template>
+    </o-field>
+    <!-- 
+    <o-field label="Transition">
       <div
         v-for="transition in transitions"
         :key="transition"
         class="input-group"
       >
         <label :for="transition">{{ transition }}</label>
-        <input
+        <o-radio
           :id="transition"
-          type="radio"
+          v-model="generatedCode.transition"
           name="transition"
-          @change="handleChange"
         />
       </div>
-    </div>
-    <div class="form-group">
-      <label for="duration">Duration (sec)</label>
-      <input
+    </o-field> -->
+
+    <o-field label="Duration (sec)">
+      <o-input
         id="duration"
+        v-model="generatedCode.duration"
         type="range"
-        name="duration"
         value="3"
         minlength="-1"
         max="60"
         step="1"
-        @change="handleChange"
       />
-    </div>
+    </o-field>
   </form>
 </template>
 
 <script>
 import { reactive } from "vue";
-import sanitizeHtml from "sanitize-html";
+// import sanitizeHtml from "sanitize-html";
 
 export default {
   emits: ["update:code"],
-  setup(_, { emit }) {
+  setup() {
     const generatedCode = reactive({});
 
-    const types = ["success", "info", "warning", "error"];
+    const types = ["success", "warning", "danger"];
 
     const positions = [
       "top left",
@@ -94,49 +84,20 @@ export default {
 
     const transitions = ["fade", "bounce", "slide-blurred"];
 
-    const RADIO_INPUTS = ["type", "position", "transition"];
-
-    const handleChange = ({ target }) => {
-      const { id, name, value } = target;
-      const key = RADIO_INPUTS.includes(name) ? name : id;
-      if (name === "html") {
-        generatedCode[key] = sanitizeHtml(value);
-      } else if (name === "duration") {
-        // convert to milliseconds
-        generatedCode[key] = value * 1000;
-      } else generatedCode[key] = RADIO_INPUTS.includes(name) ? id : value;
-      emit("update:code", generatedCode);
-    };
-
     return {
       types,
       positions,
       transitions,
-      handleChange,
+      generatedCode,
     };
+  },
+  watch: {
+    generatedCode: {
+      handler(value) {
+        this.$emit("update:code", value);
+      },
+      deep: true,
+    },
   },
 };
 </script>
-
-<style scoped>
-.form-group {
-  display: flex;
-  margin-bottom: 1rem;
-}
-.form-group .label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.5rem;
-  margin-right: 1rem;
-}
-.form-group input {
-  flex: 1;
-  margin-left: 1rem;
-}
-.input-group {
-  display: flex;
-  flex-direction: column;
-  margin-right: 1rem;
-  text-align: center;
-}
-</style>
