@@ -1,112 +1,15 @@
 <template>
-  <nav>
-    <h1>BuzzNotify</h1>
-    <ul>
-      <li>
-        <a href="https://github.com/eliutgon/buzz-notify" target="_blank">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-            ></path>
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a href="https://twitter.com/eliutgon" target="_blank">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
-            ></path>
-          </svg>
-        </a>
-      </li>
-      <li>
-        <button id="dark-mode">
-          <img src="./icons/moon.svg" alt="Dark mode toggle icon" />
-        </button>
-      </li>
-    </ul>
-  </nav>
+  <Nav />
 
-  <section class="buttons">
-    <h1>Top</h1>
-    <button
-      class="btn btn--success"
-      data-position="top left"
-      data-type="success"
-      @click="createNotification"
-    >
-    
-      Success
-    </button>
-    <button
-      class="btn btn--danger"
-      data-position="top center"
-      data-type="danger"
-      @click="createNotification"
-    >
-    
-      Danger
-    </button>
-    <button
-      class="btn btn--warning"
-      data-position="top right"
-      data-type="warning"
-      @click="createNotification"
-    >
-    
-      Warning
-    </button>
-    <h1>Bottom</h1>
-    <button
-      class="btn btn--success"
-      data-position="bottom left"
-      data-type="success"
-      @click="createNotification"
-    >
-    
-      Success
-    </button>
-    <button
-      class="btn btn--danger"
-      data-position="bottom center"
-      data-type="danger"
-      @click="createNotification"
-    >
-    
-      Danger
-    </button>
-    <button
-      class="btn btn--warning"
-      data-position="bottom right"
-      data-type="warning"
-      @click="createNotification"
-      data-duration="-18"
-    >
-      Warning
-    </button>
-  </section>
-  
+  <div class="row">
+    <div class="col">
+      <CodeGenerator v-model:code="generatedCode" />
+    </div>
+    <div class="col">
+      <CodePreview :code="generatedCode" />
+    </div>
+  </div>
+
   <div id="notify"></div>
 </template>
 
@@ -114,24 +17,37 @@
 import Notify from "@reliutg/buzz-notify";
 import "@reliutg/buzz-notify/dist/buzz-notify.css";
 
+import Nav from "./components/Nav.vue";
+import CodeGenerator from "./components/CodeGenerator.vue";
+import CodePreview from "./components/CodePreview.vue";
+
 export default {
+  components: {
+    Nav,
+    CodeGenerator,
+    CodePreview,
+  },
   name: "App",
-  data(){
+  data() {
     return {
-      count: 0
-    }
+      count: 0,
+      generatedCode: {},
+    };
   },
   methods: {
     createNotification({ currentTarget }) {
       const options = Object.assign({}, currentTarget.dataset);
-      Notify({ ...options, title: `Notification ${this.count}` });
+      Notify({
+        ...options,
+        title: `Notification ${this.count}`,
+      });
       this.count++;
     },
   },
 };
 </script>
 
-<style scoped>
+<style>
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
 
 *,
@@ -140,23 +56,36 @@ export default {
   box-sizing: border-box;
 }
 
+.row {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding: 1rem;
+}
+
 body {
   margin: 0;
   font-family: Roboto, sans-serif;
 }
 
-nav,
-main {
+nav {
   width: 80%;
   margin: auto;
-}
-
-nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1rem;
   text-align: center;
+  padding: 1rem;
 }
 
 nav ul {
@@ -186,13 +115,6 @@ nav ul li {
 
 nav ul li a {
   color: #202124;
-}
-
-nav ul #dark-mode {
-  padding: 0;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
 }
 
 .dark {

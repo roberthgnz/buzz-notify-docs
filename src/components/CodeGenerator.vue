@@ -23,14 +23,14 @@
     </div>
     <div class="form-group">
       <label class="label">Type</label>
-      <template v-for="type in types" :key="type">
+      <div v-for="type in types" :key="type" class="input-group">
         <label :for="type">{{ type }}</label>
         <input type="radio" name="type" :id="type" @change="handleChange" />
-      </template>
+      </div>
     </div>
     <div class="form-group">
       <label class="label">Position</label>
-      <template v-for="position in positions" :key="position">
+      <div class="input-group" v-for="position in positions" :key="position">
         <label :for="position">{{ position }}</label>
         <input
           type="radio"
@@ -38,11 +38,15 @@
           :id="position"
           @change="handleChange"
         />
-      </template>
+      </div>
     </div>
     <div class="form-group">
       <label class="label">Transition</label>
-      <template v-for="transition in transitions" :key="transition">
+      <div
+        class="input-group"
+        v-for="transition in transitions"
+        :key="transition"
+      >
         <label :for="transition">{{ transition }}</label>
         <input
           type="radio"
@@ -50,7 +54,7 @@
           :id="transition"
           @change="handleChange"
         />
-      </template>
+      </div>
     </div>
     <div class="form-group">
       <label for="duration">Duration (sec)</label>
@@ -70,13 +74,15 @@
 
 <script>
 import { reactive } from "vue";
+import sanitizeHtml from "sanitize-html";
+
 export default {
   emits: ["update:code"],
   setup(_, { emit }) {
     const generatedCode = reactive({});
 
     const types = ["success", "info", "warning", "error"];
-    
+
     const positions = [
       "top left",
       "top center",
@@ -93,7 +99,12 @@ export default {
     const handleChange = ({ target }) => {
       const { id, name, value } = target;
       const key = RADIO_INPUTS.includes(name) ? name : id;
-      generatedCode[key] = RADIO_INPUTS.includes(name) ? id : value;
+      if (name === "html") {
+        generatedCode[key] = sanitizeHtml(value);
+      } else if (name === "duration") {
+        // convert to milliseconds
+        generatedCode[key] = value * 1000;
+      } else generatedCode[key] = RADIO_INPUTS.includes(name) ? id : value;
       emit("update:code", generatedCode);
     };
 
@@ -106,3 +117,26 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.form-group {
+  display: flex;
+  margin-bottom: 1rem;
+}
+.form-group .label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+  margin-right: 1rem;
+}
+.form-group input {
+  flex: 1;
+  margin-left: 1rem;
+}
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+  text-align: center;
+}
+</style>
