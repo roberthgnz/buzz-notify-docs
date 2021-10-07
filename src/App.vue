@@ -3,7 +3,8 @@
 
   <div class="row">
     <div class="col">
-      <CodeGenerator v-model:code="generatedCode" />
+      <CodeGenerator :code="generatedCode" />
+      <button @click="createNotification">Create Notification</button>
     </div>
     <div class="col">
       <CodePreview :code="generatedCode" />
@@ -30,16 +31,14 @@ export default {
   data() {
     return {
       count: 0,
-      generatedCode: {},
+      generatedCode: {
+        title: "My awesome site",
+      },
     };
   },
   methods: {
-    createNotification({ currentTarget }) {
-      const options = Object.assign({}, currentTarget.dataset);
-      Notify({
-        ...options,
-        title: `Notification ${this.count}`,
-      });
+    createNotification() {
+      Notify(this.generatedCode);
       this.count++;
     },
   },
