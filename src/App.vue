@@ -36,6 +36,10 @@ export default {
       count: 0,
       generatedCode: {
         title: "My awesome site",
+        type: "success",
+        position: "top right",
+        transition: "fade",
+        duration: 3000,
       },
     };
   },
