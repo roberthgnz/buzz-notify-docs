@@ -27,7 +27,6 @@ export default {
     CodeGenerator,
     CodePreview,
   },
-  name: "App",
   data() {
     return {
       count: 0,

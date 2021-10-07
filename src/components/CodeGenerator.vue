@@ -3,19 +3,19 @@
     <div class="form-group">
       <label for="title" class="label">Title</label>
       <input
-        type="text"
         id="title"
+        type="text"
         name="title"
         placeholder="Toast notification title"
-        @change="handleChange"
         required
+        @change="handleChange"
       />
     </div>
     <div class="form-group">
       <label for="html" class="label">HTML</label>
       <textarea
-        name="html"
         id="html"
+        name="html"
         cols="30"
         rows="10"
         @change="handleChange"
@@ -25,17 +25,17 @@
       <label class="label">Type</label>
       <div v-for="type in types" :key="type" class="input-group">
         <label :for="type">{{ type }}</label>
-        <input type="radio" name="type" :id="type" @change="handleChange" />
+        <input :id="type" type="radio" name="type" @change="handleChange" />
       </div>
     </div>
     <div class="form-group">
       <label class="label">Position</label>
-      <div class="input-group" v-for="position in positions" :key="position">
+      <div v-for="position in positions" :key="position" class="input-group">
         <label :for="position">{{ position }}</label>
         <input
+          :id="position"
           type="radio"
           name="position"
-          :id="position"
           @change="handleChange"
         />
       </div>
@@ -43,15 +43,15 @@
     <div class="form-group">
       <label class="label">Transition</label>
       <div
-        class="input-group"
         v-for="transition in transitions"
         :key="transition"
+        class="input-group"
       >
         <label :for="transition">{{ transition }}</label>
         <input
+          :id="transition"
           type="radio"
           name="transition"
-          :id="transition"
           @change="handleChange"
         />
       </div>
@@ -59,9 +59,9 @@
     <div class="form-group">
       <label for="duration">Duration (sec)</label>
       <input
+        id="duration"
         type="range"
         name="duration"
-        id="duration"
         value="3"
         minlength="-1"
         max="60"
