@@ -56,3 +56,54 @@ export default {
   }
 };
 </script>
+
+
+<style scoped>
+nav {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+nav ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 700px) {
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  nav ul {
+    width: 10%;
+  }
+}
+
+nav ul li {
+  display: inline-block;
+  color: #202124;
+  margin-right: 1rem;
+}
+
+nav ul li:last-child {
+  margin-right: 0;
+}
+
+nav ul li a {
+  color: #202124;
+}
+
+.dark ul li a {
+  color: #fff;
+}
+</style>
