@@ -1,6 +1,6 @@
 <template>
   <div class="code-preview">
-    <code v-html="preview"></code>
+    <pre v-html="preview"></pre>
   </div>
 </template>
 
