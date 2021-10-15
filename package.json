@@ -12,9 +12,9 @@
   "author": "Eliut González",
   "license": "MIT",
   "dependencies": {
-    "@reliutg/buzz-notify": "^2.1.4",
+    "@reliutg/buzz-notify": "2.1.5",
     "@vueuse/core": "6.5.3",
-    "highlight.js": "^11.2.0",
+    "highlight.js": "11.2.0",
     "vue": "3.2.19"
   },
   "devDependencies": {
