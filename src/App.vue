@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import Notify from "@reliutg/buzz-notify";
+import { Notify } from "@reliutg/buzz-notify";
 import "@reliutg/buzz-notify/dist/buzz-notify.css";
 
 import Nav from "./components/Nav.vue";
