@@ -37,7 +37,7 @@ export default {
       generatedCode: {
         title: "My awesome site",
         type: "success",
-        position: "top right",
+        position: "top-right",
         transition: "fade",
         duration: 3000,
       },
