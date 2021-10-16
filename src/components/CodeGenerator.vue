@@ -99,12 +99,12 @@ export default {
     const types = ["success", "warning", "danger"];
 
     const positions = [
-      "top left",
-      "top center",
-      "top right",
-      "bottom left",
-      "bottom center",
-      "bottom right",
+      "top-left",
+      "top-center",
+      "top-right",
+      "bottom-left",
+      "bottom-center",
+      "bottom-right",
     ];
 
     const transitions = ["fade", "bounce", "slide-blurred"];
