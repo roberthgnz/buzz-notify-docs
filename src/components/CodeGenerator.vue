@@ -96,7 +96,7 @@ export default {
     },
   },
   setup(props) {
-    const types = ["success", "warning", "danger"];
+    const types = ["success", "warning", "danger", 'type'];
 
     const positions = [
       "top-left",
