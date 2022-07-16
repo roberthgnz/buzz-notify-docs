@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div id="notify"></div>
+  <div data-notify></div>
 </template>
 
 <script>
