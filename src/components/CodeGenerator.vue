@@ -17,7 +17,7 @@
         placeholder="<span>Hello!!</span>"
         name="html"
         cols="30"
-        rows="10"
+        rows="4"
       ></textarea>
     </FormGroup>
     <FormGroup label="Type">
@@ -96,7 +96,7 @@ export default {
     },
   },
   setup(props) {
-    const types = ["success", "warning", "danger", 'type'];
+    const types = ["success", "warning", "danger", 'info'];
 
     const positions = [
       "top-left",
