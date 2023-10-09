@@ -1,2 +1,2 @@
 # buzz-notify-docs
-Docs for https://github.com/eliutgon/buzz-notify
+Docs for https://github.com/roberthgnz/buzz-notify

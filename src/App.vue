@@ -1,5 +1,5 @@
 <template>
-  <Nav />
+  <TheNav />
 
   <div class="row">
     <div class="col">
@@ -18,7 +18,7 @@
 import { Notify } from "@reliutg/buzz-notify";
 import "@reliutg/buzz-notify/dist/buzz-notify.css";
 
-import Nav from "./components/Nav.vue";
+import TheNav from "./components/TheNav.vue";
 import CodeGenerator from "./components/CodeGenerator.vue";
 import CodePreview from "./components/CodePreview.vue";
 
@@ -26,7 +26,7 @@ import BButton from "./components/ui/BButton.vue";
 
 export default {
   components: {
-    Nav,
+    TheNav,
     CodeGenerator,
     CodePreview,
     BButton,

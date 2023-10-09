@@ -3,7 +3,7 @@
     <h1><span style="color: var(--primary-color)">Buzz</span>Notify</h1>
     <ul>
       <li>
-        <a href="https://github.com/eliutgon/buzz-notify" target="_blank">
+        <a href="https://github.com/roberthgnz/buzz-notify" target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -22,7 +22,7 @@
         </a>
       </li>
       <li>
-        <a href="https://twitter.com/eliutgon" target="_blank">
+        <a href="https://twitter.com/roberthgnz" target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
